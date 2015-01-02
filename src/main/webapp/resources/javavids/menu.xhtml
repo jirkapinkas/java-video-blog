@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+	xmlns:h="http://xmlns.jcp.org/jsf/html" 
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:security="http://www.springframework.org/security/tags"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+
+</composite:interface>
+
+<composite:implementation>
+	<div style="width:100%; background: url(#{resource['images/top_bg.jpg']}) 50% 0 repeat-x #4A4841; padding-top: 15px; padding-bottom: 20px">
+		<div class="row" style="margin-right: auto; margin-left: auto; width: 1400px">
+			<div style="float: left">
+				<h:link outcome="index">
+					<h:graphicImage value="#{resource['images/logo_bg.png']}" style="margin-left:10px;width:100px" />
+				</h:link>
+			</div>
+			<div style="padding-left: 0; float: right; width: 1270px; padding-right: 14px;">
+				<h:form>
+					<p:menubar style="background: url(#{resource['images/menu_bg.jpg']}) 50% 0 repeat-x #4A4841;border:0px">
+						<p:menuitem value="HOME" url="/index.xhtml" style="padding-top:2px;font-weight:bold" />
+
+						<security:authorize access="hasRole('ROLE_ADMIN')">
+							<p:menuitem value="SETTINGS" url="/settings.xhtml" style="padding-top:2px;font-weight:bold" />
+						</security:authorize>
+
+						<security:authorize access="isAnonymous()">
+							<p:menuitem value="LOGIN" url="/login.xhtml" style="margin-left:10px;padding-top:2px;font-weight:bold" />
+						</security:authorize>
+						<security:authorize access="! isAnonymous()">
+							<p:menuitem value="LOGOUT" url="j_spring_security_logout" style="margin-left:10px;padding-top:2px;font-weight:bold" />
+						</security:authorize>
+					</p:menubar>
+				</h:form>
+			</div>
+		</div>
+	</div>
+
+</composite:implementation>
+
+</html>

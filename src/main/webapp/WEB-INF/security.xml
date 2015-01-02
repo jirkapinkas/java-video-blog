@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security
+http://www.springframework.org/schema/security/spring-security-3.2.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<http auto-config="true" use-expressions="true">
+		<form-login login-page="/login.xhtml" />
+		<intercept-url pattern="/settings.xhtml*" access="hasRole('ROLE_ADMIN')" />
+	</http>
+	<authentication-manager>
+		<authentication-provider>
+			<password-encoder hash="bcrypt" />
+			<jdbc-user-service data-source-ref="dataSource" authorities-by-username-query="select adminName, 'ROLE_ADMIN' from vlog_settings where adminName = ?" users-by-username-query="select adminName,adminPassword,1 from vlog_settings where adminName = ?" />
+		</authentication-provider>
+	</authentication-manager>
+</beans:beans>

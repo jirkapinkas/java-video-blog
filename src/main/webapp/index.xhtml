@@ -1,0 +1,166 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:security="http://www.springframework.org/security/tags"
+	xmlns:javavids="http://java.sun.com/jsf/composite/javavids">
+
+<ui:composition template="/template.xhtml">
+	<ui:param name="title" value="JavaVids: Java videos" />
+	
+	<ui:define name="breadcrumb">
+		<h:form>
+			<p:breadCrumb>
+				<p:menuitem value="Home" url="/index.xhtml" />
+			</p:breadCrumb>
+		</h:form>
+	</ui:define>
+	
+	<ui:define name="description">
+		<javavids:static-content width="790" location="homepage" mainStyle="padding:0" contentStyle="background-color:white;border:none" />
+	</ui:define>
+
+	<ui:define name="tags">
+		<!-- TODO DODELAT TAGY! -->
+	</ui:define>
+
+	<ui:define name="content">
+
+		<security:authorize access="hasRole('ROLE_ADMIN')">
+			<br />
+			<h:form>
+				<p:commandButton value="Add group" oncomplete="PF('dialog').show();" resetValues="true" action="#{indexController.cancel()}" update=":formGrid" />
+			</h:form>
+			<br />
+		</security:authorize>
+
+		<p:dataTable value="#{indexController.groups}" var="group"
+			id="dataTable">
+			<p:column>
+				<security:authorize access="hasRole('ROLE_ADMIN')">
+					<h:form id="delForm" style="float:left">
+						<!-- icon list: http://jqueryui.com/themeroller/ -->
+						<p:commandButton action="#{indexController.delete(group)}" update=":dataTable" icon="ui-icon-close">
+							<p:confirm header="Confirmation" message="Really delete?" icon="ui-icon-alert"/>
+						</p:commandButton>
+					</h:form>
+					<h:form style="float:left">
+						<p:commandButton action="#{indexController.setGroup(group)}" update=":formGrid" icon="ui-icon-wrench" oncomplete="PF('dialog').show()" />
+					</h:form>
+				</security:authorize>
+
+				<a href="/tutorial/#{group.shortName}.html">
+					<img src="icon?shortName=#{group.shortName}" class="gridImage" />
+	 				<strong>
+	 					<h:outputText value="#{group.name}" escape="false" /> (#{group.items.size()} videos, duration: #{group.duration})
+					</strong>
+					<br />
+					<h:outputText value="#{group.shortDescription}" escape="false" />
+				</a>
+			</p:column>
+		</p:dataTable>
+
+		<security:authorize access="hasRole('ROLE_ADMIN')">
+			<h:form>
+				<p:confirmDialog global="true" closeOnEscape="true">
+					<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+					<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+				</p:confirmDialog>
+			</h:form>
+			
+			<br />
+			
+			<h:form>
+				<p:commandButton value="Add group" oncomplete="PF('dialog').show();" resetValues="true" action="#{indexController.cancel()}" update=":formGrid" />
+			</h:form>
+			
+			<p:dialog widgetVar="dialog" closeOnEscape="true">
+
+			<h:form id="formGrid" enctype="multipart/form-data">
+	
+				<p:panelGrid id="grid" styleClass="grid">
+					<p:row>
+						<p:column colspan="3">
+							<p:messages autoUpdate="true" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+						name: 
+					</p:column>
+						<p:column>
+							<p:message for="name" />
+							<p:inputText value="#{indexController.group.name}"
+								title="name" id="name"  />
+						</p:column>
+					</p:row>
+					<p:row rendered="#{indexController.group.id != null}">
+						<p:column>
+						short name: 
+					</p:column>
+						<p:column>
+							<p:message for="shortName" />
+							<p:inputText value="#{indexController.group.shortName}"
+								title="shortName" id="shortName"  />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+						description: 
+					</p:column>
+						<p:column>
+							<p:message for="description" />
+							<p:inputTextarea value="#{indexController.group.description}"
+								title="description" id="description"  />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+						short description: 
+					</p:column>
+						<p:column>
+							<p:message for="shortDescription" />
+							<p:inputTextarea
+								value="#{indexController.group.shortDescription}"
+								title="shortDescription" id="shortDescription"  />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+						display order: 
+					</p:column>
+						<p:column>
+							<p:message for="groupOrder" />
+							<p:inputText
+								value="#{indexController.group.groupOrder}"
+								title="groupOrder" id="groupOrder"  />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+						icon: 
+						</p:column>
+						<p:column>
+							<!-- TODO potrebuju validovat ze tohle je vyplnene (pouze pri insertu, nikoli pri update) -->
+							<p:fileUpload value="#{indexController.uploadedFile}" mode="simple" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column colspan="2">
+							<p:commandButton action="#{indexController.save()}" value="Save group" ajax="false" />
+							<p:commandButton value="Cancel" immediate="true" resetValues="true" action="#{indexController.cancel()}" onclick="PF('dialog').hide()" />
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+
+			</h:form>
+				
+			</p:dialog>
+				
+		</security:authorize>
+		
+	</ui:define>
+</ui:composition>
+
+</html>

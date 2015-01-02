@@ -1,0 +1,40 @@
+.gridImage {
+	float: left;
+	padding-right: 10px;
+}
+
+.grid tr, .grid td {
+     border-style: hidden !important;
+}
+
+.grid {
+	width:100%;
+}
+
+.grid input {
+	width:100%;
+}
+
+.grid textarea {
+	width:100%;
+}
+
+/* first column will be small */
+.grid td:first-child {
+	width:1px;
+}
+
+/* hide data table header */
+#dataTable thead {
+display: none;
+}
+
+.ui-datatable-odd {
+	background-color: #f0f0f0;
+}
+
+
+/* adBlockMessage */
+.adBlockMessage {position: fixed; bottom: 0; left: 0; right: 0; background: #fffd59; color: #222; font-size: 16px; padding: 2em 1em; z-index: 2010; box-shadow: 0 -1px 29px rgba(9,0,0,.78); font-weight: bold; text-align: center; }
+.adBlockMessage a {color: #222; text-decoration: none; padding: 0.6em 1em; margin-left: 1em; border: 2px solid #dad91a; background-color: #fff; }
+.adBlockMessage a:hover {border-color: #222; }

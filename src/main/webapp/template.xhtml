@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:security="http://www.springframework.org/security/tags" xmlns:f="http://xmlns.jcp.org/jsf/core" 
+	xmlns:javavids="http://java.sun.com/jsf/composite/javavids">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<!-- iPad / iPhone fix -->
+	<meta name="viewport" content="width=1450" />
+	<title>${title}</title>
+	<meta name="google-site-verification" content="xgAftu0GYwP1bDUsEILvOoQwJajMSv1GBDzZTNSpwzc" />
+</h:head>
+
+<h:body>
+	<!--  these will load after primefaces CSS & JS -->
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="default.css" />
+	<h:outputScript library="js" name="bootstrap.min.js" />
+
+
+	<!-- TODO vykopat style a dat to do default.css, to same i v includovanych xhtml souborech -->
+
+	<!-- to see warnings in debug mode -->
+	<p:messages severity="warn" />
+	
+<!-- 	<h:form rendered="#{pollController.newUser}"> -->
+<!-- 		<p:dialog widgetVar="pollDialog" visible="true" modal="true" header="Your vote counts!" closable="false"> -->
+<!-- 			javavids.com solves your problems. In order to continue, <br /> -->
+<!-- 			we must focus our resources. Please tell us which topics<br /> -->
+<!-- 			you would like to cover:<br /> -->
+<!-- 			<br /> -->
+
+<!-- 			<h:panelGrid columns="1"> -->
+<!-- 				<p:selectOneRadio binding="#{selectedPollRadio}" columns="1" layout="grid"> -->
+<!-- 					<f:selectItem itemLabel="How to (un)install Java (for example for Minecraft)" itemValue="1" /> -->
+<!-- 					<f:selectItem itemLabel="Java SE - basics" itemValue="2" /> -->
+<!-- 					<f:selectItem itemLabel="Java EE - Servlets, JSF, ..." itemValue="3" /> -->
+<!-- 					<f:selectItem itemLabel="Spring" itemValue="4" /> -->
+<!-- 					<f:selectItem itemLabel="Hibernate (JPA)" itemValue="5" /> -->
+<!-- 					<f:selectItem itemLabel="Android" itemValue="6" /> -->
+<!-- 					<f:selectItem itemLabel="Something else entirely" itemValue="7" /> -->
+<!-- 				</p:selectOneRadio> -->
+<!-- 			</h:panelGrid> -->
+<!-- 			<p:commandButton value="Submit" oncomplete="PF('pollDialog').hide()" action="#{pollController.save(selectedPollRadio.value)}" /> -->
+<!-- 			<p:commandButton value="I don't want to submit" oncomplete="PF('pollDialog').hide()" action="#{pollController.cancel()}" /> -->
+<!-- 		</p:dialog> -->
+<!-- 	</h:form> -->
+
+	<javavids:menu />
+
+	<div class="container-fluid" style="margin-right: auto; margin-left: auto; width: 1410px">
+
+		<div style="float: left">
+		
+			<div style="float: right; width: 790px;padding-top:10px">
+				<ui:insert name="breadcrumb">Breadcrumb</ui:insert>
+				<h1>
+					<h:outputText value="${title}" escape="false" />
+				</h1>
+				<ui:insert name="description">
+					Description
+				</ui:insert>
+				<div align="center">
+					<div style="width: 790px; margin: 0; padding: 0;" class="static-content-banner">
+						<javavids:static-content location="banner" contentStyle="border:1px solid #a8a8a8;border-bottom:0;background-color: #f0f0f0;padding-top: 10px;padding-bottom:1px;margin:0;border-bottom-left-radius: 0px; border-bottom-right-radius: 0px; border-top-left-radius: 0px; border-top-right-radius: 0px;" />
+					</div>
+				</div>
+				<ui:insert name="content">Main Content</ui:insert>
+			</div>
+			<div style="float: left; width: 190px; margin: 10px; margin-top: 10px; margin-left: 0px; padding: 10px;padding-top:0px;padding-right:0" class="static-content-left">
+				<javavids:static-content location="left" />
+			</div>
+		</div>
+
+		<div style="float: right; width: 370px; margin: 10px; margin-top: 10px; margin-left: 0px; padding: 10px;padding-top:0px;padding-left:0" class="static-content-right">
+			<div class="static-content-#{cc.attrs.location}-inner"
+				style="background-color: #f0f0f0; border: 1px solid #A8A8A8; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; border-top-left-radius: 3px; border-top-right-radius: 3px; margin-bottom: 5px; padding: 10px;${cc.attrs.contentStyle}">
+				<span style="font-weight:bold">Tags</span>
+				<p>
+					<ui:insert name="tags">tags</ui:insert>
+				</p>
+			</div>
+			<javavids:static-content location="right" />
+		</div>
+
+		<div style="clear: both;">
+
+		<br />
+		<br />
+
+
+		<div style="width: 1370px; border-top: 5px solid black;padding:0;margin:0;" class="static-content-footer">
+			<javavids:static-content location="footer" contentStyle="border:0;background-color:#f1eee7" />
+		</div>
+
+		<javavids:adblock />	
+
+		</div>
+
+
+	</div>
+
+</h:body>
+</html>

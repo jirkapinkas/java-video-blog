@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="url" value="jdbc:hsqldb:mem:test;sql.syntax_pgs=true" />
+		<property name="username" value="sa" />
+		<property name="password" value="" />
+	</bean>
+
+	<bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="emf">
+		<property name="packagesToScan" value="com.java.vlog.entity" />
+		<property name="dataSource" ref="dataSource" />
+<!-- 		<property name="sharedCacheMode" value="ENABLE_SELECTIVE" /> -->
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
+<!-- 				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</prop> -->
+<!-- 				<prop key="hibernate.cache.use_second_level_cache">true</prop> -->
+<!-- 				<prop key="hibernate.cache.use_query_cache">true</prop> -->
+<!-- 				<prop key="javax.persistence.sharedCache.mode">ENABLE_SELECTIVE</prop> -->
+			</props>
+		</property>
+		<property name="persistenceProvider">
+			<bean class="org.hibernate.jpa.HibernatePersistenceProvider" />
+		</property>
+	</bean>
+
+	<import resource="aspects.xml" />
+
+</beans>

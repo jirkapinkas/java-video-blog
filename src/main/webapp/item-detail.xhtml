@@ -1,0 +1,96 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<f:metadata>
+	<f:viewParam name="name" />
+	<f:viewAction action="#{itemDetailController.loadItem(param.name)}" />
+</f:metadata>
+
+<ui:composition template="/template.xhtml">
+	<ui:param name="title" value="#{itemDetailController.item.name}" />
+	<ui:define name="breadcrumb">
+		<h:form>
+			<p:breadCrumb style="font-size:12px">
+				<p:menuitem value="Home" url="/index.xhtml" style="margin-top:2px" />
+				<p:menuitem>
+					<a href="/group-detail.xhtml?name=#{itemDetailController.item.group.shortName}">
+						<h:outputText value="#{itemDetailController.item.group.name}" escape="false" style="padding-top:3px" />
+					</a>
+				</p:menuitem>
+				<p:menuitem>
+					<a href="/item-detail.xhtml?name=#{param.name}">
+						<h:outputText value="#{itemDetailController.item.name}" escape="false" style="padding-top:3px" />
+					</a>
+				</p:menuitem>
+			</p:breadCrumb>
+		</h:form>
+	</ui:define>
+
+	<ui:define name="description">
+		<p>
+			<h:outputText value="#{itemDetailController.item.shortDescription}" escape="false" />
+		</p>
+	</ui:define>
+	
+	<ui:define name="tags">
+		<ui:repeat var="stringTag" value="#{itemDetailController.item.tagArray}">
+			<a href="/tag/#{tagController.generatePermalink(stringTag)}.html">
+				<h:outputText value="#{stringTag}" escape="false" />
+			</a>
+		</ui:repeat>
+	</ui:define>
+
+	<ui:define name="content">
+		<link href="/resources/js/google-code-prettify/prettify.css" type="text/css" rel="stylesheet" />
+		<script type="text/javascript" src="/resources/js/google-code-prettify/prettify.js"></script>
+		<script type="text/javascript" src="/resources/js/linkify.js"></script>
+
+		<style>
+			.static-content-banner-inner {
+				border: 0 !important;
+				background-color: white !important;
+			}
+		</style>
+
+		<p align="center">
+			<iframe width="750" height="411" src="http://www.youtube.com/embed/#{itemDetailController.item.youtubeId}" frameborder="0" allowfullscreen=""></iframe>
+		</p>
+
+		<div class="content">
+			<h:outputText value="#{itemDetailController.item.description}" escape="false" />
+		</div>
+
+		<!-- enables pretty print and transformes links in text to HTML links -->
+		<script type="text/javascript">
+			document.onload = start();
+		
+			function start() {
+				var textDiv = $(".content");
+				$.each(textDiv, function(index, value) {
+					value.innerHTML = linkify(value.innerHTML);
+				});
+		        prettyPrint();
+			}
+		
+		</script>
+		
+		<br />
+	    <div id="disqus_thread"></div>
+	    <script type="text/javascript">
+	        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+	        var disqus_shortname = 'javavids'; // required: replace example with your forum shortname
+	
+	        /* * * DON'T EDIT BELOW THIS LINE * * */
+	        (function() {
+	            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+	            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	        })();
+	    </script>
+	    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+	</ui:define>
+</ui:composition>
+
+</html>

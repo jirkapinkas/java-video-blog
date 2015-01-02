@@ -1,0 +1,186 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:security="http://www.springframework.org/security/tags">
+
+<f:metadata>
+	<f:viewParam name="name" />
+	<f:viewAction action="#{groupDetailController.loadGroup(param.name)}" />
+</f:metadata>
+
+<ui:composition template="/template.xhtml">
+	<ui:param name="title" value="#{groupDetailController.group.name}" />
+	<ui:define name="breadcrumb">
+		<h:form>
+			<p:breadCrumb>
+				<p:menuitem value="Home" url="/index.xhtml" />
+				<p:menuitem value="#{groupDetailController.group.name}" url="/group-detail.xhtml?name=#{param.name}" />
+			</p:breadCrumb>
+		</h:form>
+	</ui:define>
+	
+	<ui:define name="description">
+		<p>
+			<h:outputText value="#{groupDetailController.group.description}" escape="false" />
+		</p>
+	</ui:define>
+
+	<ui:define name="tags">
+		<!-- TODO DODELAT TAGY! -->
+	</ui:define>
+
+	<ui:define name="content">
+
+		<security:authorize access="hasRole('ROLE_ADMIN')">
+			<br />
+			<h:form>
+				<p:commandButton value="Add item" oncomplete="PF('dialog').show();" resetValues="true" action="#{groupDetailController.cancel()}" update=":formGrid" />
+			</h:form>
+			<br />
+		</security:authorize>
+
+		<p:dataTable value="#{groupDetailController.group.items}" var="item" id="dataTable">
+			<p:column>
+				<security:authorize access="hasRole('ROLE_ADMIN')">
+					<h:form style="float:left">
+						<p:commandButton action="#{groupDetailController.deleteItem(item)}" icon="ui-icon-minus" update=":dataTable" />
+					</h:form>
+					<h:form style="float:left">
+						<p:commandButton action="#{groupDetailController.setItem(item)}" icon="ui-icon-wrench" update=":formGrid, :tagsPanelOuter" oncomplete="PF('dialog').show()" />
+					</h:form>
+				</security:authorize>
+				<a href="/video/#{item.shortName}.html">
+					<h:graphicImage value="/resources/images/play.png" styleClass="gridImage" />
+					<strong>
+						<h:outputText value="#{item.name}" escape="false" /> (#{item.duration})
+					</strong>
+					<br />
+					<h:outputText value="#{item.shortDescription}" escape="false" />
+				</a>
+			</p:column>
+		</p:dataTable>
+
+		<security:authorize access="hasRole('ROLE_ADMIN')">
+
+			<security:authorize access="hasRole('ROLE_ADMIN')">
+				<br />
+				<h:form>
+					<p:commandButton value="Add item" oncomplete="PF('dialog').show();" resetValues="true" action="#{groupDetailController.cancel()}" update=":formGrid" />
+				</h:form>
+				<br />
+			</security:authorize>
+
+			<p:dialog widgetVar="dialog" closeOnEscape="true">
+			
+			<h:form>
+				Quick load video URL:
+				<p:inputText binding="#{youtubeVideo}" style="margin-right:10px;width:560px" />
+				<p:commandButton value="load" action="#{groupDetailController.loadYoutubeVideo(youtubeVideo.value)}" update=":formGrid" />
+			</h:form>
+			<br />
+	
+			<h:form id="formGrid">
+				<p:panelGrid id="grid" styleClass="grid">
+					<p:row>
+						<p:column colspan="3">
+							<p:messages autoUpdate="true" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+						name: 
+					</p:column>
+						<p:column>
+							<p:message for="name" />
+							<p:inputText value="#{groupDetailController.item.name}" title="name" id="name" />
+						</p:column>
+					</p:row>
+					<p:row rendered="#{groupDetailController.item.id != null}">
+						<p:column>
+						short name: 
+					</p:column>
+						<p:column>
+							<p:message for="shortName" />
+							<p:inputText value="#{groupDetailController.item.shortName}" title="shortName" id="shortName" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+						youtube link: 
+					</p:column>
+						<p:column>
+							<p:message for="youtubeId" />
+							<p:inputText value="#{groupDetailController.item.youtubeId}" title="youtubeId" id="youtubeId" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+						description: 
+					</p:column>
+						<p:column>
+							<p:message for="description" />
+							<p:inputTextarea value="#{groupDetailController.item.description}" title="description" id="description" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+						short description: 
+					</p:column>
+						<p:column>
+							<p:message for="shortDescription" />
+							<p:inputTextarea value="#{groupDetailController.item.shortDescription}" title="shortDescription" id="shortDescription" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+						video length: 
+					</p:column>
+						<p:column>
+							<p:message for="videoLength" />
+							<p:inputText value="#{groupDetailController.item.videoLength}" title="videoLength" id="videoLength" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column colspan="2">
+							<p:commandButton action="#{groupDetailController.saveItem()}" value="Save item" update=":dataTable, formGrid" oncomplete="PF('dialog').hide()" />
+							<p:commandButton action="#{groupDetailController.cancel()}" value="Cancel" immediate="true" resetValues="true" update=":dataTable, formGrid" onclick="PF('dialog').hide()" />
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</h:form>
+			
+			<p:panel id="tagsPanelOuter">
+				<p:panel rendered="#{groupDetailController.item.id != null}" id="tagsPanel">
+			
+					<h3>tags:</h3>
+
+					<p:outputPanel id="tags">
+						<ui:repeat var="stringTag" value="#{groupDetailController.item.tagArray}">
+							<div style="float:left;padding-right:10px">
+								<h:form style="float:left">
+									<p:commandButton action="#{groupDetailController.delete(stringTag)}" value="#{stringTag}" icon="ui-icon-minus" update=":tagsPanel" />
+								</h:form>
+							</div>
+						</ui:repeat>
+					</p:outputPanel>
+					
+					<div style="clear:both;padding-bottom:20px"></div>
+	
+					<h:form id="tagsForm">
+						<!-- http://stackoverflow.com/questions/11941943/pass-input-text-value-to-bean-method -->
+						<p:inputText binding="#{tagName}" />
+						<p:commandButton action="#{groupDetailController.saveTag(tagName.value)}" value="Save tag" update=":tagsPanel" resetValues="true" />
+					</h:form>
+				
+				</p:panel>
+			</p:panel>
+
+			</p:dialog>
+
+		</security:authorize>
+	</ui:define>
+
+</ui:composition>
+</html>
