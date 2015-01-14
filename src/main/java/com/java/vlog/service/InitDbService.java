@@ -64,29 +64,28 @@ public class InitDbService {
 			
 		// initialize database
 			
-			migrace();
 
-//		Group groupJava101 = constructGroup("Java Basics Tutorial", "Java basics tutorial for beginners. From installation of JDK to programming console applications in Eclipse IDE.",
-//				"Java basics tutorial for beginners. From installation of JDK to programming console applications in Eclipse IDE.");
-//		groupService.save(groupJava101);
-//		
-//		GroupIcon groupIcon = new GroupIcon();
-//		groupIcon.setGroup(groupJava101);
-//		groupIcon.setIcon(IOUtils.toByteArray(getClass().getResourceAsStream("/java-basics.png")));
-//		groupIconService.save(groupIcon);
-//		
-//		groupJava101.setGroupIcon(groupIcon);
-//		groupService.save(groupJava101);
-//
-//		
-//		itemService
-//				.save(constructItem(
-//						"Difference between Java JRE and JDK",
-//						"<p>http://www.google.com?test=a&test=b <pre class='prettyprint'>int a = 10;</pre> JRE is a shortname for Java Runtime Edition. In short it's a bunch of applications and Java libraries that are required to run Java applications. This is what you need to run a Java application.</p>"
-//								+ "<p>You can download it on java.com, which is a site for people, that aren't programmers (aka normal people).</p>"
-//								+ "<p>But in order to create a Java application, you need more. You need JDK, which is a shortname for Java Development Kit. You can download it on oracle.com website. Just google jdk and you should be able to find it.</p><br><br>",
-//						"Difference between Java JRE and JDK plus how to install JDK (Java Development Kit).", "Hyk3BtCZOEY", groupJava101));
-//		itemService.save(constructItem("Second", "Second content", "Second cont.", "youtubelink2", groupJava101));
+		Group groupJava101 = constructGroup("Java Basics Tutorial", "Java basics tutorial for beginners. From installation of JDK to programming console applications in Eclipse IDE.",
+				"Java basics tutorial for beginners. From installation of JDK to programming console applications in Eclipse IDE.");
+		groupService.save(groupJava101);
+		
+		GroupIcon groupIcon = new GroupIcon();
+		groupIcon.setGroup(groupJava101);
+		groupIcon.setIcon(IOUtils.toByteArray(getClass().getResourceAsStream("/java-basics.png")));
+		groupIconService.save(groupIcon);
+		
+		groupJava101.setGroupIcon(groupIcon);
+		groupService.save(groupJava101);
+
+		
+		itemService
+				.save(constructItem(
+						"Difference between Java JRE and JDK",
+						"<p>http://www.google.com?test=a&test=b <pre class='prettyprint'>int a = 10;</pre> JRE is a shortname for Java Runtime Edition. In short it's a bunch of applications and Java libraries that are required to run Java applications. This is what you need to run a Java application.</p>"
+								+ "<p>You can download it on java.com, which is a site for people, that aren't programmers (aka normal people).</p>"
+								+ "<p>But in order to create a Java application, you need more. You need JDK, which is a shortname for Java Development Kit. You can download it on oracle.com website. Just google jdk and you should be able to find it.</p><br><br>",
+						"Difference between Java JRE and JDK plus how to install JDK (Java Development Kit).", "Hyk3BtCZOEY", groupJava101));
+		itemService.save(constructItem("Second", "Second content", "Second cont.", "youtubelink2", groupJava101));
 		
 		staticContentService.save(constructStaticContent("", Location.HOMEPAGE, "This free online video tutorial in English on YouTube was started in late 2011 and it's ever growing collection of Java video tutorials. It's always a work in progress. I focus on tips and tricks with Eclipse and other sweet stuff you won't find in traditional books. Most tutorials are tips and tricks with an exception of Spring web application tutorial, which is focused on how to make a modern web application from scratch. I hope you will enjoy my work."));
 
@@ -191,52 +190,6 @@ public class InitDbService {
 		}
 	}
 
-	private void migrace() throws IOException {
-		try {
-			JAXBContext jaxbContext = JAXBContext.newInstance(Migrace.class);
-			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-			Migrace migrace = (Migrace) unmarshaller.unmarshal(getClass().getResourceAsStream("/migrace.xml"));
-			List<MigGroup> groups = migrace.getGroups();
-			for (MigGroup migGroup : groups) {
-				Group group = new Group();
-				group.setName(migGroup.getName().trim());
-				group.setDescription(migGroup.getDescription().trim());
-				group.setShortName(migGroup.getShortname().trim());
-				group.setShortDescription(migGroup.getShortdesc().trim());
-				group.setGroupOrder(migGroup.getOrder());
-				group.setPublishedDate(migGroup.getDate());
-				groupRepository.save(group);
-				GroupIcon groupIcon = new GroupIcon();
-				groupIcon.setIcon(IOUtils.toByteArray(getClass().getResourceAsStream("/logos/" + group.getShortName().trim() + ".png")));
-				groupIcon.setGroup(group);
-				groupIconService.save(groupIcon);
-				group.setGroupIcon(groupIcon);
-				groupRepository.save(group);
-			}
-			List<MigItem> items = migrace.getItems();
-			for (MigItem migItem : items) {
-				try {
-					Item item = new Item();
-					item.setName(migItem.getName().trim());
-					item.setDescription(migItem.getDescription().trim());
-					item.setShortName(migItem.getShortname().trim());
-					item.setShortDescription(migItem.getShortdesc().trim());
-					item.setPublishedDate(migItem.getPublishdate());
-					item.setVideoLength(migItem.getLength());
-					item.setYoutubeId(migItem.getYoutubeid().trim());
-					item.setTags(migItem.getKeywords().trim());
-					item.setGroup(groupRepository.findByShortName(migItem.getGroupshortname().trim()));
-					itemRepository.save(item);
-				}catch(Exception ex) {
-					System.out.println("TODO nepodarilo se namapovat: " + migItem.getShortname());
-					ex.printStackTrace();
-				}
-			}
-		} catch (JAXBException e) {
-			e.printStackTrace();
-		}
-	}
-
 	private StaticContent constructStaticContent(String name, Location location, String description) {
 		StaticContent staticContent = new StaticContent();
 		staticContent.setLocation(location);
@@ -262,4 +215,5 @@ public class InitDbService {
 		item.setGroup(group);
 		return item;
 	}
+
 }
