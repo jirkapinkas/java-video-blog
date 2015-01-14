@@ -122,6 +122,7 @@
 						<p:column>
 							<p:message for="description" />
 							<p:inputTextarea value="#{groupDetailController.item.description}" title="description" id="description" autoResize="false" rows="10" />
+							<a href="#" class="addPrettyprint" onclick="addPrettyPrint(this)" style="color:red">add prettyprint</a>
 						</p:column>
 					</p:row>
 					<p:row>
@@ -150,6 +151,13 @@
 					</p:row>
 				</p:panelGrid>
 			</h:form>
+			
+			<script type="text/javascript">
+				function addPrettyPrint(e) {
+					var textArea = $(e).prev();
+					textArea.val(textArea.val() + "\n&lt;pre class=\"prettyprint\"&gt;\n\n&lt;/pre&gt;\n");
+				}
+			</script>
 			
 			<p:panel id="tagsPanelOuter">
 				<p:panel rendered="#{groupDetailController.item.id != null}" id="tagsPanel">
