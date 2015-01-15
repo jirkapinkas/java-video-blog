@@ -1,21 +1,14 @@
 package com.java.vlog.service;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.java.vlog.MIGRACE.MigGroup;
-import com.java.vlog.MIGRACE.MigItem;
-import com.java.vlog.MIGRACE.Migrace;
 import com.java.vlog.controller.SettingsController;
 import com.java.vlog.controller.StaticContentController;
 import com.java.vlog.entity.Group;
