@@ -27,7 +27,7 @@ public class Group extends DynamicContent {
 	@OneToMany(mappedBy = "group", cascade = { CascadeType.REMOVE })
 	private List<Item> items;
 
-	@OneToOne(fetch=FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.REMOVE })
 	@JoinColumn(name = "group_icon_id")
 	private GroupIcon groupIcon;
 

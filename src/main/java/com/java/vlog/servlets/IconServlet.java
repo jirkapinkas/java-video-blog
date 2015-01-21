@@ -29,7 +29,6 @@ public class IconServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO cachovat! tohle zbytecne zatezuje databazi
 		String shortName = request.getParameter("shortName");
 		byte[] icon = groupIconService.findIcon(shortName);
 		ServletOutputStream out = response.getOutputStream();

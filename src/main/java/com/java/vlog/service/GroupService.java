@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.java.vlog.entity.Group;
 import com.java.vlog.entity.GroupIcon;
-import com.java.vlog.repository.GroupIconRepository;
 import com.java.vlog.repository.GroupRepository;
 import com.java.vlog.util.MyUtil;
 
@@ -21,7 +20,7 @@ public class GroupService {
 	private GroupRepository groupRepository;
 
 	@Autowired
-	private GroupIconRepository groupIconRepository;
+	private GroupIconService groupIconService;
 
 	public List<Group> findAllWithItems() {
 		return groupRepository.findAllWithItems();
@@ -47,12 +46,14 @@ public class GroupService {
 		groupRepository.save(group);
 	}
 
+	@Transactional
 	public void save(Group group, byte[] contents) {
 		save(group);
-		GroupIcon groupIcon = new GroupIcon();
+		GroupIcon groupIcon = group.getGroupIcon();
+		groupIcon = new GroupIcon(); // TODO when editing, old icon stays in database
 		groupIcon.setIcon(contents);
 		groupIcon.setGroup(group);
-		groupIconRepository.save(groupIcon);
+		groupIconService.save(groupIcon);
 		group.setGroupIcon(groupIcon);
 		save(group);
 	}

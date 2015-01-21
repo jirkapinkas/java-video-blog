@@ -8,9 +8,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
-// TODO NASTAVIT CACHOVANI, zkusit JPA cachovani:
-// http://stackoverflow.com/questions/3663979/how-to-use-jpa2s-cacheable-instead-of-hibernates-cache
-//@Cacheable(true)
 @Entity
 @Table(name = "vlog_group_icon")
 public class GroupIcon extends MasterEntity {
