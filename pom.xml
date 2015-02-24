@@ -216,30 +216,6 @@
 		<plugins>
 
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.2.1</version>
-				<executions>
-					<execution>
-						<phase>install</phase>
-						<goals>
-							<goal>exec</goal>
-						</goals>
-						<configuration>
-							<executable>heroku</executable>
-							<arguments>
-								<argument>deploy:war</argument>
-								<argument>--war</argument>
-								<argument>target/javavids.war</argument>
-								<argument>--app</argument>
-								<argument>javavids</argument>
-							</arguments>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-
-			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.2</version>
@@ -309,9 +285,6 @@
 	<profiles>
 		<profile>
 			<id>dev</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
 			<properties>
 				<filter.name>dev</filter.name>
 			</properties>
@@ -325,6 +298,9 @@
 		</profile>
 		<profile>
 			<id>prod</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 			<properties>
 				<filter.name>prod</filter.name>
 			</properties>
@@ -335,6 +311,33 @@
 					<version>9.1-901-1.jdbc4</version>
 				</dependency>
 			</dependencies>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<version>2.3</version>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>copy</goal>
+								</goals>
+								<configuration>
+									<artifactItems>
+										<artifactItem>
+											<groupId>com.github.jsimone</groupId>
+											<artifactId>webapp-runner</artifactId>
+											<version>8.0.18.0-M1</version>
+											<destFileName>webapp-runner.jar</destFileName>
+										</artifactItem>
+									</artifactItems>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
 		</profile>
 	</profiles>
 
