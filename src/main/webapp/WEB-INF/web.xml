@@ -114,7 +114,7 @@
 	<!-- default Spring profile -->
 	<context-param>
 		<param-name>spring.profiles.default</param-name>
-		<param-value>prod</param-value>
+		<param-value>${spring.active.profile}</param-value>
 	</context-param>
 	
 	<context-param>
