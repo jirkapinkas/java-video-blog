@@ -6,8 +6,7 @@
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<!-- iPad / iPhone fix -->
-	<meta name="viewport" content="width=1450" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>${title}</title>
 	<meta name="google-site-verification" content="xgAftu0GYwP1bDUsEILvOoQwJajMSv1GBDzZTNSpwzc" />
 </h:head>
@@ -49,11 +48,12 @@
 
 	<javavids:menu />
 
-	<div class="container-fluid" style="margin-right: auto; margin-left: auto; width: 1410px">
+	<div class="container">
 
-		<div style="float: left">
-		
-			<div style="float: right; width: 790px;padding-top:10px">
+		<div class="row">
+
+		<div class="col-md-8 col-md-push-2">
+			<div style="padding-top:10px">
 				<ui:insert name="breadcrumb">Breadcrumb</ui:insert>
 				<h1>
 					<h:outputText value="${title}" escape="false" />
@@ -62,26 +62,31 @@
 					Description
 				</ui:insert>
 				<div align="center">
-					<div style="width: 790px; margin: 0; padding: 0;" class="static-content-banner">
+					<div style="margin: 0; padding: 0;" class="static-content-banner">
 						<javavids:static-content location="banner" contentStyle="border:1px solid #a8a8a8;border-bottom:0;background-color: #f0f0f0;padding-top: 10px;padding-bottom:1px;margin:0;border-bottom-left-radius: 0px; border-bottom-right-radius: 0px; border-top-left-radius: 0px; border-top-right-radius: 0px;" />
 					</div>
 				</div>
 				<ui:insert name="content">Main Content</ui:insert>
 			</div>
-			<div style="float: left; width: 190px; margin: 10px; margin-top: 10px; margin-left: 0px; padding: 10px;padding-top:0px;padding-right:0" class="static-content-left">
+		</div>
+
+		<div class="static-content-left col-md-2 col-md-pull-8">
+			<div style="margin-top:10px; width:180px">
 				<javavids:static-content location="left" />
 			</div>
 		</div>
 
-		<div style="float: right; width: 370px; margin: 10px; margin-top: 10px; margin-left: 0px; padding: 10px;padding-top:0px;padding-left:0" class="static-content-right">
-			<div class="static-content-#{cc.attrs.location}-inner"
-				style="background-color: #f0f0f0; border: 1px solid #A8A8A8; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; border-top-left-radius: 3px; border-top-right-radius: 3px; margin-bottom: 5px; padding: 10px;${cc.attrs.contentStyle}">
-				<span style="font-weight:bold">Tags</span>
-				<p>
-					<ui:insert name="tags">tags</ui:insert>
-				</p>
+		<div class="static-content-right col-md-2">
+			<div style="width: 370px; margin: 10px; margin-top: 10px; margin-left: 0px; padding: 10px;padding-top:0px;padding-left:0">
+				<div class="static-content-#{cc.attrs.location}-inner"
+					style="background-color: #f0f0f0; border: 1px solid #A8A8A8; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; border-top-left-radius: 3px; border-top-right-radius: 3px; margin-bottom: 5px; padding: 10px;${cc.attrs.contentStyle}">
+					<span style="font-weight:bold">Tags</span>
+					<p>
+						<ui:insert name="tags">tags</ui:insert>
+					</p>
+				</div>
+				<javavids:static-content location="right" />
 			</div>
-			<javavids:static-content location="right" />
 		</div>
 
 		<div style="clear: both;">
@@ -90,12 +95,14 @@
 		<br />
 
 
-		<div style="width: 1370px; border-top: 5px solid black;padding:0;margin:0;" class="static-content-footer">
+		<div style="border-top: 5px solid black;padding:0;margin:0;" class="static-content-footer">
 			<javavids:static-content location="footer" contentStyle="border:0;background-color:#f1eee7" />
 		</div>
 
 		<javavids:adblock />	
 
+		</div>
+		
 		</div>
 
 

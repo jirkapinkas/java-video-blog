@@ -12,13 +12,13 @@
 
 <composite:implementation>
 	<div style="width:100%; background: url(#{resource['images/top_bg.jpg']}) 50% 0 repeat-x #4A4841; padding-top: 15px; padding-bottom: 20px">
-		<div class="row" style="margin-right: auto; margin-left: auto; width: 1400px">
-			<div style="float: left">
+		<div class="row">
+			<div class="col-md-1 col-md-offset-2">
 				<h:link outcome="index">
-					<h:graphicImage value="#{resource['images/logo_bg.png']}" style="margin-left:10px;width:100px" />
+					<h:graphicImage value="#{resource['images/logo_bg.png']}" style="margin-left:10px" />
 				</h:link>
 			</div>
-			<div style="padding-left: 0; float: right; width: 1270px; padding-right: 14px;">
+			<div class="col-md-2">
 				<h:form>
 					<p:menubar style="background: url(#{resource['images/menu_bg.jpg']}) 50% 0 repeat-x #4A4841;border:0px">
 						<p:menuitem value="HOME" url="/index.xhtml" style="padding-top:2px;font-weight:bold" />

@@ -156,12 +156,14 @@ public class InitDbService {
 "		</script>\n" +
 
 // top google adsense banner
+
 "<script async=\"async\" src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script> \n" +
-"<!-- javavids-banner --> \n" +
+"<!-- javavids-banner-responsive --> \n" +
 "<ins class=\"adsbygoogle\" \n" +
-"     style=\"display:inline-block;width:728px;height:90px\" \n" +
+"     style=\"display:block\" \n" +
 "     data-ad-client=\"ca-pub-7085637172523095\" \n" +
-"     data-ad-slot=\"2694737335\"></ins> \n" +
+"     data-ad-slot=\"7621866008\" \n" +
+"     data-ad-format=\"auto\"></ins> \n" +
 "<script> \n" +
 "(adsbygoogle = window.adsbygoogle || []).push({}); \n" +
 "</script> \n"));
