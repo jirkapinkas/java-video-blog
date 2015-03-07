@@ -52,7 +52,7 @@
 
 		<div class="row">
 
-		<div class="col-md-8 col-md-push-2">
+		<div class="col-md-33 col-md-push-9">
 			<div style="padding-top:10px">
 				<ui:insert name="breadcrumb">Breadcrumb</ui:insert>
 				<h1>
@@ -70,13 +70,13 @@
 			</div>
 		</div>
 
-		<div class="static-content-left col-md-2 col-md-pull-8">
-			<div style="margin-top:10px; width:180px">
+		<div class="static-content-left col-md-9 col-md-pull-33">
+			<div style="margin-top:10px;">
 				<javavids:static-content location="left" />
 			</div>
 		</div>
 
-		<div class="static-content-right col-md-2">
+		<div class="static-content-right col-md-6">
 			<div style="width: 370px; margin: 10px; margin-top: 10px; margin-left: 0px; padding: 10px;padding-top:0px;padding-left:0">
 				<div class="static-content-#{cc.attrs.location}-inner"
 					style="background-color: #f0f0f0; border: 1px solid #A8A8A8; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; border-top-left-radius: 3px; border-top-right-radius: 3px; margin-bottom: 5px; padding: 10px;${cc.attrs.contentStyle}">
@@ -89,22 +89,19 @@
 			</div>
 		</div>
 
-		<div style="clear: both;">
-
-		<br />
-		<br />
-
-
-		<div style="border-top: 5px solid black;padding:0;margin:0;" class="static-content-footer">
-			<javavids:static-content location="footer" contentStyle="border:0;background-color:#f1eee7" />
-		</div>
-
 		<javavids:adblock />	
 
 		</div>
 		
-		</div>
+		<br /><br />
 
+		<div class="row">
+			<div class="col-md-48">
+				<div style="border-top: 5px solid black;padding:0;margin:0;" class="static-content-footer">
+					<javavids:static-content location="footer" contentStyle="border:0;background-color:#f1eee7" />
+				</div>
+			</div>
+		</div>
 
 	</div>
 

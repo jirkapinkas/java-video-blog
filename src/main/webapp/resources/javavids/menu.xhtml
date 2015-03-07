@@ -13,15 +13,14 @@
 <composite:implementation>
 	<div style="width:100%; background: url(#{resource['images/top_bg.jpg']}) 50% 0 repeat-x #4A4841; padding-top: 15px; padding-bottom: 20px">
 		<div class="row">
-			<div class="col-md-1 col-md-offset-2">
+			<div class="col-md-4 col-md-offset-10">
 				<h:link outcome="index">
-					<h:graphicImage value="#{resource['images/logo_bg.png']}" style="margin-left:10px" />
+					<h:graphicImage value="#{resource['images/logo_bg.png']}" style="margin-left:10px;padding-bottom:10px;" />
 				</h:link>
 			</div>
-			<div class="col-md-2">
+			<div class="col-md-10 col-md-offset-18">
 				<h:form>
 					<p:menubar style="background: url(#{resource['images/menu_bg.jpg']}) 50% 0 repeat-x #4A4841;border:0px">
-						<p:menuitem value="HOME" url="/index.xhtml" style="padding-top:2px;font-weight:bold" />
 
 						<security:authorize access="hasRole('ROLE_ADMIN')">
 							<p:menuitem value="SETTINGS" url="/settings.xhtml" style="padding-top:2px;font-weight:bold" />
