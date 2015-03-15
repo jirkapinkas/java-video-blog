@@ -139,7 +139,7 @@ public class InitDbService {
 		staticContentService.save(constructStaticContent("Free online Java web application examples", Location.RIGHT, "Want to develop whole web applications which use database, security and more? See my github account, where are lot's of example projects: <br /> <a href='https://github.com/jirkapinkas?tab=repositories' target='_blank'> <img src='/resources/images/github.png' border='0' alt='github' /></a>"));
 
 		staticContentService.save(constructStaticContent("", Location.FOOTER,
-				"<div align='center'>&copy; <a href='http://plus.google.com/100661368478614117231' rel='author' target='_blank'>Jirka Pinkas</a>. All Rights Reserved.</div>"
+				"<div align='center'>&copy; <a href='http://plus.google.com/100661368478614117231' rel='author' target='_blank'>Jirka Pinkas</a>. All Rights Reserved. <a href='/login.xhtml'>Admin login</a></div>"
 				+ "<div align='center'>My other projects: <a href='http://www.topjavablogs.com' target='_blank'>Top Java Blogs</a>, <a href='http://www.sqlvids.com' target='_blank'>SQL video tutorials</a>, <a href='http://www.java-skoleni.cz' target='_blank'>Java školení (in Czech language)</a>, <a href='http://www.sql-skoleni.cz' target='_blank'>SQL školení (in Czech language)</a></div>"));
 
 		staticContentService.save(constructStaticContent("", Location.BANNER, 

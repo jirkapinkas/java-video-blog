@@ -18,23 +18,23 @@
 					<h:graphicImage value="#{resource['images/logo_bg.png']}" style="margin-left:10px;padding-bottom:10px;" />
 				</h:link>
 			</div>
-			<div class="col-md-10 col-md-offset-18">
-				<h:form>
-					<p:menubar style="background: url(#{resource['images/menu_bg.jpg']}) 50% 0 repeat-x #4A4841;border:0px">
-
-						<security:authorize access="hasRole('ROLE_ADMIN')">
+			<security:authorize access="hasRole('ROLE_ADMIN')">
+				<div class="col-md-10 col-md-offset-18">
+					<h:form>
+						<p:menubar style="background: url(#{resource['images/menu_bg.jpg']}) 50% 0 repeat-x #4A4841;border:0px">
+	
 							<p:menuitem value="SETTINGS" url="/settings.xhtml" style="padding-top:2px;font-weight:bold" />
-						</security:authorize>
-
-						<security:authorize access="isAnonymous()">
-							<p:menuitem value="LOGIN" url="/login.xhtml" style="margin-left:10px;padding-top:2px;font-weight:bold" />
-						</security:authorize>
-						<security:authorize access="! isAnonymous()">
-							<p:menuitem value="LOGOUT" url="j_spring_security_logout" style="margin-left:10px;padding-top:2px;font-weight:bold" />
-						</security:authorize>
-					</p:menubar>
-				</h:form>
-			</div>
+	
+							<security:authorize access="isAnonymous()">
+								<p:menuitem value="LOGIN" url="/login.xhtml" style="margin-left:10px;padding-top:2px;font-weight:bold" />
+							</security:authorize>
+							<security:authorize access="! isAnonymous()">
+								<p:menuitem value="LOGOUT" url="j_spring_security_logout" style="margin-left:10px;padding-top:2px;font-weight:bold" />
+							</security:authorize>
+						</p:menubar>
+					</h:form>
+				</div>
+			</security:authorize>
 		</div>
 	</div>
 
