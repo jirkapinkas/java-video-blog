@@ -42,4 +42,8 @@
 		<import resource="database-prod.xml" />
 	</beans>
 
+	<beans profile="openshift">
+		<import resource="database-openshift.xml" />
+	</beans>
+
 </beans>
