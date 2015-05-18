@@ -7,12 +7,6 @@
 
 	<application>
 		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
-
-		<system-event-listener>
-			<system-event-listener-class>com.java.vlog.ScriptValidateListener</system-event-listener-class>
-			<system-event-class>javax.faces.event.PreRenderViewEvent</system-event-class>
-		</system-event-listener>
-
 	</application>
 
 </faces-config>
