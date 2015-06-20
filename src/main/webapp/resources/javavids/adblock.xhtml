@@ -6,18 +6,26 @@
 
 <composite:implementation>
 
+	<style>
+		/* adBlockMessage */
+		.#{adBlockController.adBlockClassName} {position: fixed; bottom: 0; left: 0; right: 0; background: #fffd59; color: #222; font-size: 16px; padding: 2em 1em; z-index: 2010; box-shadow: 0 -1px 29px rgba(9,0,0,.78); font-weight: bold; text-align: center; }
+		.#{adBlockController.adBlockClassName} a {color: #222; text-decoration: none; padding: 0.6em 1em; margin-left: 1em; border: 2px solid #dad91a; background-color: #fff; }
+		.#{adBlockController.adBlockClassName} a:hover {border-color: #222; }
+	</style>
+
 	<script type="text/javascript" src="/resources/js/ads.js"></script>
 
 	<div id="footer"></div>
 	<script type="text/javascript">
 		if( window.canRunAds === undefined ){
+			var adBlockClassName = '#{adBlockController.adBlockClassName}';
 			// adblocker detected, show fallback
-			document.write("&lt;div class='adBlockMessage'&gt;&lt;p&gt;Please don't block advertisement. It's the only revenue we have and it keeps this website up and running (and free). Thank you.&lt;/p&gt;&lt;/div&gt;");
+			document.write("&lt;div class='" + adBlockClassName + "'&gt;&lt;p&gt;Please don't block advertisement. It's the only revenue we have and it keeps this website up and running (and free). Thank you.&lt;/p&gt;&lt;/div&gt;");
 			document.write("&lt;style type='text/css'&gt;#footer { margin-bottom: 80px !important}&lt;/style&gt;");
 		}
 	</script>
 	<noscript>
-		<div class="adBlockMessage">
+		<div class="#{adBlockController.adBlockClassName}">
 			<p>
 				Please don't block advertisement. It's the only revenue we have and it keeps this website up and running (and free). Thank you.
 			</p>
