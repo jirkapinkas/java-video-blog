@@ -286,7 +286,6 @@
 					<webAppConfig>
 						<descriptor>target/jettyFilteredResources/web.xml</descriptor>
 					</webAppConfig>
-					<scanIntervalSeconds>3</scanIntervalSeconds>
 				</configuration>
 			</plugin>
 
