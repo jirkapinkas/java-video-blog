@@ -8,7 +8,9 @@
 
 <ui:composition template="/template.xhtml">
 	<!-- TODO decode encoded title -->
-	<ui:param name="title" value="Items with tag #{param.name}:" />
+	<ui:param name="title" value="Video tutorials with tag #{param.name}:" />
+	<ui:param name="description" value="Video tutorials with tag #{param.name}" />
+	
 	<ui:define name="breadcrumb">
 		<h:form>
 			<p:breadCrumb>

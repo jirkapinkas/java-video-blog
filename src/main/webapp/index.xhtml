@@ -8,6 +8,7 @@
 
 <ui:composition template="/template.xhtml">
 	<ui:param name="title" value="JavaVids: Java videos" />
+	<ui:param name="description" value="JavaVids contains free online video tutorials." />
 	
 	<ui:define name="breadcrumb">
 		<h:form>
@@ -51,7 +52,7 @@
 				</security:authorize>
 
 				<a href="/tutorial/#{group.shortName}.html">
-					<img src="icon?shortName=#{group.shortName}" class="gridImage" />
+					<img src="icon?shortName=#{group.shortName}" class="gridImage" alt="tutorial" />
 	 				<strong>
 	 					<h:outputText value="#{group.name}" escape="false" /> (#{group.items.size()} videos, duration: #{group.duration})
 					</strong>

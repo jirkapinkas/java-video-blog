@@ -12,6 +12,8 @@
 
 <ui:composition template="/template.xhtml">
 	<ui:param name="title" value="#{groupDetailController.group.name}" />
+	<ui:param name="description" value="#{groupDetailController.group.shortDescription}" />
+	
 	<ui:define name="breadcrumb">
 		<h:form>
 			<p:breadCrumb>
@@ -52,7 +54,7 @@
 					</h:form>
 				</security:authorize>
 				<a href="/video/#{item.shortName}.html">
-					<h:graphicImage value="/resources/images/play.png" styleClass="gridImage" />
+					<h:graphicImage value="/resources/images/play.png" styleClass="gridImage" alt="video" />
 					<strong>
 						<h:outputText value="#{item.name}" escape="false" /> (#{item.duration})
 					</strong>

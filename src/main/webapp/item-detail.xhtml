@@ -8,6 +8,8 @@
 
 <ui:composition template="/template.xhtml">
 	<ui:param name="title" value="#{itemDetailController.item.name}" />
+	<ui:param name="description" value="#{itemDetailController.item.shortDescription}" />
+	
 	<ui:define name="breadcrumb">
 		<h:form>
 			<p:breadCrumb style="font-size:12px">
