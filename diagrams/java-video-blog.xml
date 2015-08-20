@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><entities>
 	<entity>
-		<entity-name>com.java.vlog.entity.DynamicContent</entity-name>
-		<entity-width>161</entity-width>
-		<entity-height>150</entity-height>
-		<entity-X-Coordinate>50</entity-X-Coordinate>
-		<entity-Y-Coordinate>50</entity-Y-Coordinate>
-		<primary-collapsed>false</primary-collapsed>
-		<relation-collapsed>false</relation-collapsed>
-		<basic-collapsed>false</basic-collapsed>
-	</entity>
-
-	<entity>
-		<entity-name>com.java.vlog.entity.Group</entity-name>
+		<entity-name>com.java.vlog.entity.GroupIcon</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>128</entity-height>
-		<entity-X-Coordinate>71</entity-X-Coordinate>
-		<entity-Y-Coordinate>345</entity-Y-Coordinate>
+		<entity-height>108</entity-height>
+		<entity-X-Coordinate>350</entity-X-Coordinate>
+		<entity-Y-Coordinate>343</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
@@ -33,11 +22,11 @@
 	</entity>
 
 	<entity>
-		<entity-name>com.java.vlog.entity.MasterEntity</entity-name>
-		<entity-width>120</entity-width>
-		<entity-height>70</entity-height>
-		<entity-X-Coordinate>350</entity-X-Coordinate>
-		<entity-Y-Coordinate>10</entity-Y-Coordinate>
+		<entity-name>com.java.vlog.entity.DynamicContent</entity-name>
+		<entity-width>161</entity-width>
+		<entity-height>150</entity-height>
+		<entity-X-Coordinate>50</entity-X-Coordinate>
+		<entity-Y-Coordinate>50</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
@@ -55,22 +44,22 @@
 	</entity>
 
 	<entity>
-		<entity-name>com.java.vlog.entity.Settings</entity-name>
+		<entity-name>com.java.vlog.entity.Group</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>170</entity-height>
-		<entity-X-Coordinate>570</entity-X-Coordinate>
-		<entity-Y-Coordinate>230</entity-Y-Coordinate>
+		<entity-height>128</entity-height>
+		<entity-X-Coordinate>71</entity-X-Coordinate>
+		<entity-Y-Coordinate>345</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
 	</entity>
 
 	<entity>
-		<entity-name>com.java.vlog.entity.GroupIcon</entity-name>
+		<entity-name>com.java.vlog.entity.Settings</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>108</entity-height>
-		<entity-X-Coordinate>350</entity-X-Coordinate>
-		<entity-Y-Coordinate>343</entity-Y-Coordinate>
+		<entity-height>170</entity-height>
+		<entity-X-Coordinate>570</entity-X-Coordinate>
+		<entity-Y-Coordinate>230</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
