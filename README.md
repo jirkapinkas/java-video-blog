@@ -6,4 +6,6 @@
 
 <p>default username / password: admin / admin</p>
 
-<h2>Heroku / OpenShift (with PostgreSQL database)</h2>
+<h2>Production:</h2>
+
+<code>mvn clean package -P custom</code>
