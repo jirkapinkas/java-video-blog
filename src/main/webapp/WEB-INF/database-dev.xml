@@ -28,6 +28,4 @@
 		</property>
 	</bean>
 
-	<import resource="aspects.xml" />
-
 </beans>
