@@ -1,8 +1,8 @@
 package com.java.vlog;
 
-import java.util.Arrays;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.java.vlog.custom.ViewScope;
+import org.springframework.beans.factory.config.CustomScopeConfigurer;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.concurrent.ConcurrentMapCache;
@@ -16,6 +16,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
+import java.util.Collections;
 
 @EnableScheduling
 @EnableJpaRepositories(basePackages = "com.java.vlog.repository")
@@ -41,8 +42,15 @@ public class SpringConfiguration {
 	public CacheManager cacheManager() {
 		// configure and return an implementation of Spring's CacheManager SPI
 		SimpleCacheManager cacheManager = new SimpleCacheManager();
-		cacheManager.setCaches(Arrays.asList(new ConcurrentMapCache("icon")));
+		cacheManager.setCaches(Collections.singletonList(new ConcurrentMapCache("icon")));
 		return cacheManager;
+	}
+
+	@Bean
+	public CustomScopeConfigurer customScopeConfigurer() {
+		CustomScopeConfigurer configurer = new CustomScopeConfigurer();
+		configurer.addScope("view", new ViewScope());
+		return configurer;
 	}
 
 }
