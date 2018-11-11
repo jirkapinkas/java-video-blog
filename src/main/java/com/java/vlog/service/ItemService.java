@@ -42,7 +42,7 @@ public class ItemService {
 	}
 
 	public List<Item> findLatest(int page, int count) {
-		return itemRepository.findAll(new PageRequest(page, count, Direction.DESC, "publishedDate")).getContent();
+		return itemRepository.findAll(PageRequest.of(page, count, Direction.DESC, "publishedDate")).getContent();
 	}
 
 	public void addTag(String tagName, Item item) {
@@ -68,7 +68,7 @@ public class ItemService {
 	}
 
 	public Item findOneWithTags(Integer id) {
-		return itemRepository.findOne(id);
+		return itemRepository.findById(id).orElse(null);
 	}
 	
 	public Item findOneWithTags(String shortName) {

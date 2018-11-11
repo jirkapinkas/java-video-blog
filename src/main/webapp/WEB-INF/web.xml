@@ -87,16 +87,6 @@
 		<!-- <servlet-name>Faces Servlet</servlet-name> -->
 	</filter-mapping>
 
-	<!-- gzip compression -->
-	<filter>
-        <filter-name>CompressingFilter</filter-name>
-        <filter-class>com.github.ziplet.filter.compression.CompressingFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>CompressingFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
 	<!-- Time in seconds that facelets should be checked for changes since last request. A value of -1 disables refresh checking. -->
 	<context-param>
 		<param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>

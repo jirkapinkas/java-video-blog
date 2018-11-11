@@ -26,7 +26,7 @@ public class StaticContent extends MasterEntity {
 	private String name;
 
 	@Lob
-	@Type(type = "org.hibernate.type.StringClobType")
+	@Type(type = "org.hibernate.type.TextType")
 	@Column(length = Integer.MAX_VALUE, nullable = false)
 	private String description;
 

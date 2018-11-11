@@ -27,11 +27,11 @@ public class GroupIconService {
 	}
 	
 	public GroupIcon findOne(int id) {
-		return groupIconRepository.findOne(id);
+		return groupIconRepository.findById(id).orElse(null);
 	}
 	
 	public void remove(int id) {
-		groupIconRepository.delete(id);
+		groupIconRepository.deleteById(id);
 	}
 
 }

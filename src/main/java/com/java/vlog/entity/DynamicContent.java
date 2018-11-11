@@ -25,7 +25,7 @@ public abstract class DynamicContent extends MasterEntity {
 
 	@Size(min = 1, message = "Description is required!")
 	@Lob
-	@Type(type = "org.hibernate.type.StringClobType")
+	@Type(type = "org.hibernate.type.TextType")
 	@Column(length = Integer.MAX_VALUE, nullable = false)
 	private String description;
 

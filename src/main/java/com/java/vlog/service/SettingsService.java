@@ -17,7 +17,7 @@ public class SettingsService {
 
 	public void save(Settings settings) {
 		if (settings.getId() != null) {
-			Settings managedSettings = settingsRepository.findOne(settings.getId());
+			Settings managedSettings = settingsRepository.findById(settings.getId()).orElse(null);
 			if (settings.getAdminPassword() != null && !settings.getAdminPassword().isEmpty()) {
 				settings.setAdminPassword(new BCryptPasswordEncoder().encode(settings.getAdminPassword()));
 			} else {

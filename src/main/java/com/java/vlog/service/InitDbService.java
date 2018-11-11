@@ -140,7 +140,7 @@ public class InitDbService {
 
 		staticContentService.save(constructStaticContent("", Location.FOOTER,
 				"<div align='center'>&copy; <a href='http://plus.google.com/100661368478614117231' rel='author' target='_blank'>Jirka Pinkas</a>. All Rights Reserved. <a href='/login.xhtml'>Admin login</a></div>"
-				+ "<div align='center'>My other projects: <a href='http://www.topjavablogs.com' target='_blank'>Top Java Blogs</a>, <a href='http://www.sqlvids.com' target='_blank'>SQL video tutorials</a>, <a href='http://www.java-skoleni.cz' target='_blank'>Java školení (in Czech language)</a>, <a href='http://www.sql-skoleni.cz' target='_blank'>SQL školení (in Czech language)</a></div>"));
+				+ "<div align='center'>My other projects: <a href='http://www.topjavablogs.com' target='_blank'>Top Java Blogs</a>, <a href='http://www.sqlvids.com' target='_blank'>SQL video tutorials</a>, <a href='http://www.java-skoleni.cz' target='_blank'>Java Å¡kolenÃ­ (in Czech language)</a>, <a href='http://www.sql-skoleni.cz' target='_blank'>SQL Å¡kolenÃ­ (in Czech language)</a></div>"));
 
 		staticContentService.save(constructStaticContent("", Location.BANNER, 
 // google analytics
