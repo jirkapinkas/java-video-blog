@@ -9,14 +9,6 @@
 
 	<context:component-scan base-package="com.java.vlog" />
 
-	<tx:annotation-driven transaction-manager="transactionManager" />
-
-	<bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-
-	<jpa:repositories base-package="com.java.vlog.repository" />
-
 	<!-- view scope -->
 	<bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
 		<property name="scopes">
@@ -29,7 +21,5 @@
 	</bean>
 
 	<import resource="security.xml" />
-
-	<task:annotation-driven />
 
 </beans>

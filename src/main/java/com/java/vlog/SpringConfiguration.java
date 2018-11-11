@@ -9,8 +9,17 @@ import org.springframework.cache.concurrent.ConcurrentMapCache;
 import org.springframework.cache.support.SimpleCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.sql.DataSource;
+
+@EnableScheduling
+@EnableJpaRepositories(basePackages = "com.java.vlog.repository")
+@EnableTransactionManagement
 @EnableWebSecurity
 @Configuration
 @EnableCaching
@@ -19,6 +28,13 @@ public class SpringConfiguration {
 	@Bean
 	public ObjectMapper objectMapper() {
 		return new ObjectMapper();
+	}
+
+	@Bean
+	public JpaTransactionManager transactionManager(DataSource dataSource) {
+		JpaTransactionManager transactionManager = new JpaTransactionManager();
+		transactionManager.setDataSource(dataSource);
+		return transactionManager;
 	}
 
 	@Bean
