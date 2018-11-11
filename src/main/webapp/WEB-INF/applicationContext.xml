@@ -34,8 +34,4 @@
 
 	<task:annotation-driven />
 
-	<beans profile="dev">
-		<import resource="database-dev.xml" />
-	</beans>
-
 </beans>
