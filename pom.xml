@@ -285,12 +285,6 @@
 			</plugin>
 
 			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.2</version>
-			</plugin>
-
-			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.0</version>
@@ -329,19 +323,6 @@
 					<groupId>org.hsqldb</groupId>
 					<artifactId>hsqldb</artifactId>
 					<version>2.3.2</version>
-				</dependency>
-			</dependencies>
-		</profile>
-		<profile>
-			<id>prod</id>
-			<properties>
-				<filter.name>prod</filter.name>
-			</properties>
-			<dependencies>
-				<dependency>
-					<groupId>org.postgresql</groupId>
-					<artifactId>postgresql</artifactId>
-					<version>9.3-1103-jdbc41</version>
 				</dependency>
 			</dependencies>
 		</profile>
