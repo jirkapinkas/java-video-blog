@@ -5,7 +5,6 @@ import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.jndi.JndiTemplate;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 import javax.sql.DataSource;
@@ -16,7 +15,7 @@ import java.util.Properties;
 public class SpringDevConfiguration {
 
 	@Bean
-	public DataSource dataSource() throws Exception {
+	public DataSource dataSource() {
 		HikariDataSource dataSource = new HikariDataSource();
 		dataSource.setJdbcUrl("jdbc:hsqldb:mem:test;sql.syntax_pgs=true");
 		dataSource.setUsername("sa");

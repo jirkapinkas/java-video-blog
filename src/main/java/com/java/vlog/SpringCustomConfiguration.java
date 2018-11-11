@@ -2,6 +2,7 @@ package com.java.vlog;
 
 import java.util.Properties;
 
+import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import org.hibernate.jpa.HibernatePersistenceProvider;
@@ -16,7 +17,7 @@ import org.springframework.jndi.JndiTemplate;
 public class SpringCustomConfiguration {
 
 	@Bean
-	public DataSource dataSource() throws Exception {
+	public DataSource dataSource() throws NamingException {
         return new JndiTemplate().lookup("java:comp/env/jdbc/javavids", DataSource.class);
 	}
 
