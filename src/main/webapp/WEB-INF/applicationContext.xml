@@ -6,6 +6,4 @@
 
 	<context:component-scan base-package="com.java.vlog" />
 
-	<import resource="security.xml" />
-
 </beans>

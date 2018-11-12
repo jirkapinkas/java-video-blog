@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
@@ -21,7 +20,6 @@ import java.util.Collections;
 @EnableScheduling
 @EnableJpaRepositories(basePackages = "com.java.vlog.repository")
 @EnableTransactionManagement
-@EnableWebSecurity
 @Configuration
 @EnableCaching
 public class SpringConfiguration {
